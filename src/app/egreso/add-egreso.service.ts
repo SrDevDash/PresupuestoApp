@@ -1,20 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { DataServices } from '../data.service';
 import { Egreso } from './egresos.module';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddEgresoService {
+export class AddEgresoService implements OnInit {
 
-  egresos: Egreso[] = [];
-  constructor() { }
+  egresoss: Egreso[] = [];
+
+  constructor(private dataServices: DataServices) {
+   }
+  ngOnInit(): void {
+  }
 
   agregarEgreso(egreso: Egreso){
-    this.egresos.push(egreso);
+    this.egresoss.push(egreso);
+    this.dataServices.guardarEngresos(this.egresoss);
   }
 
-  eliminarEgreso(egreso: Egreso){
-    let i = this.egresos.indexOf(egreso);
-    this.egresos.splice(i,1);
+  eliminarEgreso(index: number){
+    this.egresoss.splice(index,1);
+    this.dataServices.deleteEgreso(index);
+    this.dataServices.guardarEngresos(this.egresoss);    
   }
+
+  updateEgreso(egreso: Egreso[]){
+    this.egresoss = egreso;
+  }
+
 }

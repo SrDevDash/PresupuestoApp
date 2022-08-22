@@ -1,0 +1,8 @@
+.btno:hover {background-color: #40e7deb4;}
+
+.btno {
+    padding: 10px;
+    padding-inline: 15px;
+    color: black; font-size: 20px;  border-radius: 25px;background-color: rgb(108, 145, 226);
+}
+

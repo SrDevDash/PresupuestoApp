@@ -2,9 +2,7 @@
   <h2 class="egreso_titulo">Egresos</h2>
   <div class="egreso">
     <div 
-    *ngFor="let egreso of egresos"
-    [valor]="egreso.valor"
-    [description]="egreso.description"
+    *ngFor="let egreso of egresos let i = index"
    class="elemento limpiarEstilos">
       <div class="elemento_descripcion">{{ egreso.description}}</div>
       <div class="right limpiarEstilos">
@@ -12,7 +10,7 @@
         <div class="elemento_porcentaje">{{getPorcentaje(egreso) | percent}}</div>
         <div class="elemento_eliminar">
           <button class="elemento_eliminar--btn">
-            <i (click)="eliminarEgreso(egreso)" class="ion-ios-close-outline"></i>
+            <iconify-icon (click)="eliminarEgreso(i)" icon="ion:backspace" ></iconify-icon>
           </button>
         </div>
       </div>

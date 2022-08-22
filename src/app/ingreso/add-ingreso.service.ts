@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { DataServices } from '../data.service';
 import { Ingreso } from './ingresos.module';
 
 @Injectable({
@@ -7,14 +8,19 @@ import { Ingreso } from './ingresos.module';
 export class AddIngresoService {
 
   ingresos: Ingreso[] = [];
-  constructor() { }
+  constructor(private dataManagerService: DataServices) { }
 
   agregarIngreso(ingreso: Ingreso){
     this.ingresos.push(ingreso);
+    this.dataManagerService.guardarIngreso(this.ingresos);
   }
 
-  eliminarIngreso(ingreso: Ingreso){
-    let i = this.ingresos.indexOf(ingreso);
-    this.ingresos.splice(i,1);
+  eliminarIngreso(index: number){
+    this.ingresos.splice(index,1);
+    this.dataManagerService.deleteIngreso(index);
+    this.dataManagerService.guardarIngreso(this.ingresos);
+  }
+  updateIngresoFromDB(ingresos: Ingreso[]){
+    this.ingresos = ingresos;
   }
 }

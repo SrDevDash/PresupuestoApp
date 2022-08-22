@@ -1,13 +1,16 @@
-<form>
+<form (ngSubmit)="f.form.valid && agregarProducto()" #f="ngForm">
     <div class="agregar">
         <div class="agregar_contenedor">
-            <select class="agregar_tipo" name="tipo" [(ngModel)]="tipo">
-                <option value="plus" selected>+</option>
-                <option value="mini">-</option>
+            <select  ng-model="selected" [ngClass]="{redfocus: tipo === 'mini'}" class="agregar_tipo" name="tipo" [(ngModel)]="tipo">
+                <option ng-selected="selected" value="plus" >+</option>
+                <option  value="mini">-</option>
+                
             </select>
-            <input type="text" class="agregar_descripcion" name="descripcion" [(ngModel)]="descripcion" placeholder="Agregar Descripción">
-            <input type="number" class="agregar_valor" [(ngModel)]="valor" name="valor" placeholder="Valor">
-            <button class="agregar_btn" (click)="agregarProducto()"><i class="ion-ios-checkmark-outline"></i></button>
+            <input type="text" required [ngClass]="{redfocus: tipo === 'mini'}" class="agregar_descripcion" name="descripcion" [(ngModel)]="descripcion" placeholder="Agregar Descripción">
+            <input type="number" required [ngClass]="{redfocus: tipo === 'mini'}" class="agregar_valor" [(ngModel)]="valor" name="valor" placeholder="Valor">
+            <button class="agregar_btn" [ngClass]="{red: tipo === 'mini'}" >
+                <div class="btno">+</div>
+            </button> 
         </div>
     </div>
-  </form>
+</form>

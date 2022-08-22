@@ -8,8 +8,9 @@ import { IngresoComponent } from './ingreso/ingreso.component';
 import { FormsModule } from '@angular/forms';
 import { AddEgresoService } from './egreso/add-egreso.service';
 import { AddIngresoService } from './ingreso/add-ingreso.service';
-import { UpdatePresupuestoService } from './update-presupuesto.service';
 import { HeaderComponent } from './header/header.component';
+import { DataServices } from './data.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import { HeaderComponent } from './header/header.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [AddEgresoService,AddIngresoService,UpdatePresupuestoService],
+  providers: [AddEgresoService,AddIngresoService,DataServices],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
